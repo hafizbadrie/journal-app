@@ -4,13 +4,31 @@ import (
   "fmt"
   "net/http"
   "github.com/julienschmidt/httprouter"
+
+  "database/sql"
+  _ "github.com/lib/pq"
 )
 
-func Index(writer http.ResponseWriter, req *http.Request, params httprouter.Params) {
+const (
+  host   = "localhost"
+  port   = 5432
+  user   = "postgres"
+  dbname = "redash"
+)
+
+func Index(writer http.ResponseWriter, req *http.Request, _ httprouter.Params) {
   fmt.Fprint(writer, "Hello World!")
 }
 
 func main() {
+  fmt.Println("Connecting to database...")
+  psqlInfo := fmt.Sprintf("host=%s port=%d user=%s dbname=%s sslmode=disable", host, port, user, dbname)
+  db, err := sql.Open("postgres", psqlInfo)
+  if err != nil {
+    panic(err)
+  }
+  defer db.Close()
+
   fmt.Println("Preparing webserver...")
   router := httprouter.New()
   router.GET("/", Index)

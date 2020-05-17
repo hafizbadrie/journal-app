@@ -9,9 +9,24 @@
   revision = "4eec211fa4e8df74ed978dc5681612131854144f"
   version = "v1.3.0"
 
+[[projects]]
+  digest = "1:2284023e6fc3d18e206abf1792f50a062155d25df6a0d104202bf060a3d3d4a1"
+  name = "github.com/lib/pq"
+  packages = [
+    ".",
+    "oid",
+    "scram",
+  ]
+  pruneopts = "UT"
+  revision = "f3b22b2cad9e4567803b7ffd9853b8acda021438"
+  version = "v1.5.2"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = ["github.com/julienschmidt/httprouter"]
+  input-imports = [
+    "github.com/julienschmidt/httprouter",
+    "github.com/lib/pq",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
