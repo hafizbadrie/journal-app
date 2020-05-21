@@ -4,11 +4,15 @@ go:
 - 1.13
 
 env:
-  - DEP_VERSION=0.5.4
+  global:
+    - DEP_VERSION=0.5.4
+    - CC_TEST_REPORTER_ID=9808c7cdf962fe7a90cac74c06b3a6860fbe55469f941d1d50fcce85c4eb8316
 
 before_install:
   - curl https://raw.githubusercontent.com/golang/dep/v${DEP_VERSION}/install.sh | sh
 
 install: dep ensure
 
-script: go test
+script: go test -coverprofile=c.out
+
+after_script: ./cc-test-reporter upload-coverage -i c.out
