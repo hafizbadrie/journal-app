@@ -33,7 +33,7 @@ func main() {
   }
   defer db.Close()
 
-  fmt.Println("Preparing webserver...")
+  fmt.Println("Preparing webserver to run on :8080...")
   router := httprouter.New()
   router.GET("/", Index)
 
