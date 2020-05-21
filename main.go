@@ -20,6 +20,10 @@ func Index(writer http.ResponseWriter, req *http.Request, _ httprouter.Params) {
   fmt.Fprint(writer, "Hello World!")
 }
 
+func Sum(x int, y int) int {
+  return x + y
+}
+
 func main() {
   fmt.Println("Connecting to database...")
   psqlInfo := fmt.Sprintf("host=%s port=%d user=%s dbname=%s sslmode=disable", host, port, user, dbname)
