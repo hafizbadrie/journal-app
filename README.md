@@ -1,6 +1,8 @@
 # journal-app
 
 [![Build Status](https://travis-ci.org/hafizbadrie/journal-app.svg?branch=master)](https://travis-ci.org/hafizbadrie/journal-app)
+[![Maintainability](https://api.codeclimate.com/v1/badges/90d638ee8fec8920b623/maintainability)](https://codeclimate.com/github/hafizbadrie/journal-app/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/90d638ee8fec8920b623/test_coverage)](https://codeclimate.com/github/hafizbadrie/journal-app/test_coverage)
 
 My training ground with Golang.
 
