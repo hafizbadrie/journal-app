@@ -1,4 +1,7 @@
 # journal-app
+
+[![Build Status](https://travis-ci.org/hafizbadrie/journal-app.svg?branch=master)](https://travis-ci.org/hafizbadrie/journal-app)
+
 My training ground with Golang.
 
 # Notes
