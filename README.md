@@ -26,3 +26,9 @@ My training ground with Golang and Kubernetes.
 $> go build
 $> ./journal-app
 ```
+
+## To Run With Docker
+```
+$> docker build -t hafizbadrie/journalapp:v0.1 .
+$> docker run --publish 8080:8080 --detach --name journal-app hafizbadrie/journalapp:v0.1
+```
