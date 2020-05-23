@@ -59,6 +59,12 @@ which can use `selector` to define the resources.
 
 It is workload that allows us to create cron job in kubernetes.
 
+### Node Pools
+
+It is a way to create group of nodes so that we can have specific use cases in a kubernetes cluster. Therefore, if we want to scale out
+a particular need, we don't need to scale out the whole cluster. This way we can also decide to which node pools a pod/service 
+should be deployed to.
+
 ## References
 
 1. How to Add DO Kubernetes Context: https://www.digitalocean.com/docs/kubernetes/how-to/connect-to-cluster/
