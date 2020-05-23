@@ -33,7 +33,33 @@ $> docker build -t hafizbadrie/journalapp:v0.1 .
 $> docker run --publish 8080:8080 --detach --name journal-app hafizbadrie/journalapp:v0.1
 ```
 
-## Notes
+## Kubernetes Notes
+
+### ReplicaSets
+
+It is basically a way for us to create a set of pods easily instead of creating it one by one.
+
+### StatefulSets
+
+It is a workload API in kubernetes to allow us to create stateful application.
+
+Quoting from kubernetes doc
+> StatefulSets are valuable for applications that require one or more of the > following.
+> 1. Stable, unique network identifiers.
+> 2. Stable, persistent storage.
+> 3. Ordered, graceful deployment and scaling.
+> 4. Ordered, automated rolling updates.
+
+### ReplicationController
+
+It is similar to **ReplicaSets** but it has more rigid way to select which pods that shouold be part of it. Unlike, **ReplicaSets**
+which can use `selector` to define the resources.
+
+### CronJob
+
+It is workload that allows us to create cron job in kubernetes.
+
+## References
 
 1. How to Add DO Kubernetes Context: https://www.digitalocean.com/docs/kubernetes/how-to/connect-to-cluster/
 2. Kubernetes cheat sheet: https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-context-and-configuration
