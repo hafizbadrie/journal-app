@@ -65,9 +65,34 @@ It is a way to create group of nodes so that we can have specific use cases in a
 a particular need, we don't need to scale out the whole cluster. This way we can also decide to which node pools a pod/service 
 should be deployed to.
 
+To be able to do this, we need to add labels into nodes of a particular node pool. Later on, in the resource config file we need to add this:
+```
+spec:
+  containers:
+  - name: journalapp
+    image: hafizbadrie/journalapp:v0.1
+    ports:
+    - containerPort: 8080
+  nodeSelector:
+    <node-label-key>: <node-label-value>
+
+```
+
+## Kubernetes Cheat Sheet
+```
+$> kubectl config set-context <context-name> # to change kubernetes context
+$> kubectl config current-context # see the current active context
+$> kubectl create namespace <namespace-name> # to create a namespace
+$> kubectl -n <namespace-name> apply -f <resource-file> # whether to apply config for Pod, ReplicaSet, Deployment, Service, etc
+$> kubectl -n <namespace-name> scale --replicas=0 deployment <deployment-name> # scale down deployment to 0
+$> kubectl -n <namespace-name> delete deployment <deployment-name> # delete a deployment
+
+```
+
 ## References
 
 1. How to Add DO Kubernetes Context: https://www.digitalocean.com/docs/kubernetes/how-to/connect-to-cluster/
 2. Kubernetes cheat sheet: https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-context-and-configuration
 3. Your first service in kubernetes: https://www.digitalocean.com/community/meetup_kits/getting-started-with-containers-and-kubernetes-a-digitalocean-workshop-kit
 4. Use private docker image: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+5. Play with `nodeSelector`: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector

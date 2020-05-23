@@ -19,3 +19,5 @@ spec:
         image: hafizbadrie/journalapp:v0.1
         ports:
         - containerPort: 8080
+      nodeSelector:
+        node-pool-name: pool-1
