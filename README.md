@@ -32,3 +32,8 @@ $> ./journal-app
 $> docker build -t hafizbadrie/journalapp:v0.1 .
 $> docker run --publish 8080:8080 --detach --name journal-app hafizbadrie/journalapp:v0.1
 ```
+
+## Notes
+### How to Add DO Kubernetes Context
+
+You can see it [here](https://www.digitalocean.com/docs/kubernetes/how-to/connect-to-cluster/)
