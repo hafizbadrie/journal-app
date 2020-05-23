@@ -84,6 +84,46 @@ To do canary deployment is actually creating a new deployment which its pods are
 using the selector that is used by the Service workload. This way, when new deployment is made,
 the pods are automatically detected by the service/load balancer.
 
+### Rolling Update
+
+#### Max Surge and Max Unavailable
+
+This config will determine the behavior of  rolling  update.
+
+**Max Surge** is to determine how many new pods at a time we can add when update is happening.
+
+**Max Unavailable** is to determine how many pods we can kill at a time when update is happening.
+
+As an example, we can add this in the deployment config YAML file.
+
+```
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable:  50%
+```
+
+#### Update Deployment
+
+Just updating the image of the deployment will trigger a rolling update.
+```
+$> kubectl -n <namespace-name> set image deployments/<deployment-name> <container-name>=<new-image-name>
+```
+
+For an example, this was the command I executed:
+```
+$> kubectl -n journalapp set image deployments/journalapp-dep journalapp=hafizbadrie/journalapp:v0.2
+```
+
+#### Rollback
+
+We can execute rollback with this command:
+```
+$> kubectl -n <namespace-name> rollout undo deployments/<deployment-name>
+```
+
 ## Kubernetes Cheat Sheet
 ```
 $> kubectl config set-context <context-name> # to change kubernetes context
@@ -102,3 +142,4 @@ $> kubectl -n <namespace-name> delete deployment <deployment-name> # delete a de
 3. Your first service in kubernetes: https://www.digitalocean.com/community/meetup_kits/getting-started-with-containers-and-kubernetes-a-digitalocean-workshop-kit
 4. Use private docker image: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 5. Play with `nodeSelector`: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector
+6. Canary deployment: https://medium.com/google-cloud/kubernetes-canary-deployments-for-mere-mortals-13728ce032fe
