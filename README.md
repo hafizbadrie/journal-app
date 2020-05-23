@@ -78,6 +78,12 @@ spec:
 
 ```
 
+### Canary
+
+To do canary deployment is actually creating a new deployment which its pods are
+using the selector that is used by the Service workload. This way, when new deployment is made,
+the pods are automatically detected by the service/load balancer.
+
 ## Kubernetes Cheat Sheet
 ```
 $> kubectl config set-context <context-name> # to change kubernetes context

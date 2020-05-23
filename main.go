@@ -34,12 +34,12 @@ func HTTP(handle HandleWithError) httprouter.Handle {
 }
 
 func Index(writer http.ResponseWriter, req *http.Request, _ httprouter.Params) error {
-  username, password, _ := req.BasicAuth()
+  //username, password, _ := req.BasicAuth()
 
-  if username != httpUsername || password != httpPassword {
-    http.Error(writer, http.StatusText(http.StatusUnauthorized), http.StatusUnauthorized)
-    return &errorAuth{"Unauthorized Access"}
-  }
+  //if username != httpUsername || password != httpPassword {
+    //http.Error(writer, http.StatusText(http.StatusUnauthorized), http.StatusUnauthorized)
+    //return &errorAuth{"Unauthorized Access"}
+  //}
 
   fmt.Fprint(writer, "Hello World!")
 

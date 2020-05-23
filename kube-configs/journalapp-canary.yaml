@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: journalapp-dep
+  name: journalapp-canary
   labels:
     app: journalapp-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: journalapp-api
@@ -13,9 +13,10 @@ spec:
     metadata:
       labels:
         app: journalapp-api
+        env: canary
     spec:
       containers:
       - name: journalapp
-        image: hafizbadrie/journalapp:v0.1
+        image: hafizbadrie/journalapp:v0.2
         ports:
         - containerPort: 8080
