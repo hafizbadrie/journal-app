@@ -102,7 +102,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 50%
-      maxUnavailable:  50%
+      maxUnavailable: 50%
 ```
 
 #### Update Deployment
@@ -143,3 +143,4 @@ $> kubectl -n <namespace-name> delete deployment <deployment-name> # delete a de
 4. Use private docker image: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 5. Play with `nodeSelector`: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector
 6. Canary deployment: https://medium.com/google-cloud/kubernetes-canary-deployments-for-mere-mortals-13728ce032fe
+7. Kubernetes deployment: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
