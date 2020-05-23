@@ -34,6 +34,7 @@ $> docker run --publish 8080:8080 --detach --name journal-app hafizbadrie/journa
 ```
 
 ## Notes
-### How to Add DO Kubernetes Context
 
-You can see it [here](https://www.digitalocean.com/docs/kubernetes/how-to/connect-to-cluster/)
+1. How to Add DO Kubernetes Context: https://www.digitalocean.com/docs/kubernetes/how-to/connect-to-cluster/
+2. Kubernetes cheat sheet: https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-context-and-configuration
+3. Your first service in kubernetes: https://www.digitalocean.com/community/meetup_kits/getting-started-with-containers-and-kubernetes-a-digitalocean-workshop-kit
