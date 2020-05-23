@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: journalapp-pod
+  labels:
+    app: journalapp-api
+spec:
+  containers:
+  - name: journalapp
+    image: hafizbadrie/journalapp:v0.1
+    ports:
+    - containerPort: 8080
