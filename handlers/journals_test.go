@@ -52,6 +52,16 @@ func TestJournalsEndpointWithData(t *testing.T) {
   if err != nil {
     panic(err)
   }
+
+  // Clean up data first
+  sqlStatement = `
+  TRUNCATE journals
+  `
+  _,  err = db.Exec(sqlStatement)
+  if err != nil {
+    panic(err)
+  }
+
   sqlStatement := `
   INSERT INTO journals (id, name, created_at, updated_at)
   VALUES 
@@ -88,7 +98,7 @@ func TestJournalsEndpointWithData(t *testing.T) {
   assert.Equal(t, 200, responseCode, "Response code should be 200")
   assert.Equal(t, string(expectedBody), responseBody, "Response should be match")
 
-  // Clean up  PSQL
+  // Clean up data again
   sqlStatement = `
   TRUNCATE journals
   `
