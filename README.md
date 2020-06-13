@@ -144,3 +144,7 @@ $> kubectl -n <namespace-name> delete deployment <deployment-name> # delete a de
 5. Play with `nodeSelector`: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector
 6. Canary deployment: https://medium.com/google-cloud/kubernetes-canary-deployments-for-mere-mortals-13728ce032fe
 7. Kubernetes deployment: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+
+## Questions
+1. How does kubernetes Service/Load Balancer work?
+2. What is ingress in Kubernetes and how is it different with Service/Load Balancer?

@@ -13,6 +13,6 @@ before_install:
 
 install: dep ensure
 
-script: go test -coverprofile=c.out
+script: go test -coverprofile=c.out ./...
 
 after_script: ./cc-test-reporter upload-coverage -i c.out

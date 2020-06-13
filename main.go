@@ -4,36 +4,57 @@ import (
   "fmt"
   "net/http"
   "github.com/julienschmidt/httprouter"
-
-  "database/sql"
-  _ "github.com/lib/pq"
+  "encoding/json"
+  handlers "github.com/hafizbadrie/journal-app/handlers"
 )
 
-const (
-  host   = "localhost"
-  port   = 5432
-  user   = "postgres"
-  dbname = "redash"
-  httpUsername = "hafizbadrie"
-  httpPassword = "1234567890"
-)
-
-type HandleWithError func(http.ResponseWriter, *http.Request, httprouter.Params) error
-type errorAuth struct {
-  msg string
+// TESTING: json and functions
+type EmployeeData struct {
+  Data []Employee `json:"data"`
+  Status string `json:"status"`
 }
 
-func (e *errorAuth) Error() string {
-  return e.msg
+type Employee struct {
+  FirstName string `json:"first_name"`
 }
 
-func HTTP(handle HandleWithError) httprouter.Handle {
-    return func(writer http.ResponseWriter, req *http.Request, params httprouter.Params) {
-      handle(writer, req, params)
-    }
+func (emp Employee) getFirstName() string {
+  return emp.FirstName
 }
 
-func Index(writer http.ResponseWriter, req *http.Request, _ httprouter.Params) error {
+func (emp *Employee) changeFirstName(firstName string) {
+  emp.FirstName = firstName
+}
+
+func Show(writer http.ResponseWriter, req *http.Request, _ httprouter.Params) {
+  var employees []Employee
+
+  empHafiz := Employee{
+    FirstName: "Hafiz",
+  }
+  empBadrie := Employee{
+    FirstName: "Badrie",
+  }
+  empLubis := Employee{
+    FirstName: "Lubis",
+  }
+  employees = append(employees, empHafiz)
+  employees = append(employees, empBadrie, empLubis)
+  employeeData := EmployeeData{
+    Data: employees,
+    Status: "OK",
+  }
+  var jsonData []byte
+  jsonData, err := json.Marshal(employeeData)
+  if err != nil  {
+    panic(err)
+  }
+
+  fmt.Println(string(jsonData))
+  fmt.Fprint(writer, string(jsonData))
+}
+
+func Index(writer http.ResponseWriter, req *http.Request, _ httprouter.Params) {
   //username, password, _ := req.BasicAuth()
 
   //if username != httpUsername || password != httpPassword {
@@ -43,26 +64,17 @@ func Index(writer http.ResponseWriter, req *http.Request, _ httprouter.Params) e
 
   fmt.Fprint(writer, "Hello World!")
 
-  return nil
-}
 
-// This is a sample function to add unit test
-func Sum(x int, y int) int {
-  return x + y
+  //return nil
 }
 
 func main() {
-  fmt.Println("Connecting to database...")
-  psqlInfo := fmt.Sprintf("host=%s port=%d user=%s dbname=%s sslmode=disable", host, port, user, dbname)
-  db, err := sql.Open("postgres", psqlInfo)
-  if err != nil {
-    panic(err)
-  }
-  defer db.Close()
-
   fmt.Println("Preparing webserver to run on :8080...")
   router := httprouter.New()
-  router.GET("/", HTTP(Index))
+  //router.GET("/", HTTP(Index))
+  router.GET("/", Index)
+  router.GET("/employee", Show)
+  router.GET("/journals", handlers.Journals)
 
   http.ListenAndServe(":8080", router)
 }
